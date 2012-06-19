@@ -1,0 +1,20 @@
+%table.table.table-striped
+  %thead
+    %th Match
+    %th Prediction
+    %th Result
+  %tbody
+    - @predictions.each do |prediction|
+      %tr
+        - match = prediction.match
+        %td= "#{match.team_a} vs #{match.team_b}"
+        %td= prediction.result
+        %td
+          - if match.result.nil?
+            = "Match not finished"
+          - else
+            - if prediction.correct?
+              %i.icon-ok
+            - else
+              %i.icon-remove
+  

@@ -1,0 +1,18 @@
+.row.well
+  %br
+  %h2 Enter/Change the result for this match
+  %br
+  %h3= "#{@match.result}: #{@match.score}"
+  %br
+  %form{ action: "/match/#{@match.id}/result", method: "post" }
+    .input-prepend
+      %span.add-on= @match.team_a
+      %input.span1#team_a{ type: "text", name: "team_a", required: true }
+    = " - "
+    .input-append
+      %input.span1#team_b{ type: "text", name: "team_b", required: true }
+      %span.add-on= @match.team_b
+    %br
+    %br
+    %div
+      %input.btn(type="submit" value="Submit")

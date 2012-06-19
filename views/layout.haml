@@ -1,0 +1,60 @@
+!!!
+%html
+  %head
+    %title EURO PuNDIT
+    %script{:src => settings.environment.to_s == "production" ? "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" : "/lib/jquery-1.7.min.js", :type => "text/javascript"}
+    %link{:href => "/lib/bootstrap/css/bootstrap.min.css", :rel => "stylesheet"}
+    %link{:href => "/application.css", :rel => "stylesheet"}
+    %link{rel:"shortcut icon", href:"/images/favicon.ico"}
+  %body{:style => "padding-top: 50px;"}
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand{:href => "/"}
+            %img{src: "/images/pundit.png"}EURO PuNDIT
+          %ul.nav
+            %li
+              %a{href: "/schedule"}
+                %i.icon-calendar.icon-white
+                Schedule
+            - if logged_in?
+              %li
+                %a{href: "/user/#{current_user.id}/predictions", 'data-remote' => true}
+                  %i.icon-star-empty.icon-white
+                  = "#{current_user.points} Points"
+              %li
+                %a{href: "/leaderboard", 'data-remote' => true}
+                  %i.icon-user.icon-white
+                  Leaderboard
+          %ul.nav.pull-right
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = logged_in? ? current_user.email : "Login"
+                %b.caret
+              %ul.dropdown-menu
+                - if logged_in?
+                  %li
+                    %a{:href => "/reset_password"} Reset password
+                    %a{:href => "/log_out"} Log out
+                - else
+                  %li
+                    %form{:action => "/login", :method => "post", style: "padding: 20px; margin: 0px;"}
+                      %input{:autofocus => "", :name => "email", :placeholder => "email"}
+                      %input{:name => "password", :placeholder => "password", :type => "password"}
+                        %input.btn.primary{:type => "submit", :value => "Log In", style: "float: right"}
+    .container.content
+      - if @error then
+        .alert.alert-error= @error
+      = yield
+
+    #dummy_modal
+      .modal.hide
+        .modal-body
+          .circle
+          .circle1
+
+    %script{type: "text/javascript"}
+      current_user_id = '#{logged_in? ? current_user.id : 0}';
+    %script{:src => "/lib/bootstrap/js/bootstrap.min.js"}
+    %script{:defer => "", :src => "/lib/jquery.history.js"}
+    %script{:src => "/application.js"}

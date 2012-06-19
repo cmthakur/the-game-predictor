@@ -1,0 +1,16 @@
+%table.table.table-striped.leaderboard
+  %thead
+    %th Rank
+    %th Email
+    %th Points
+  %tbody
+    - rank = 1
+    - @grouped_users.each_with_index do |users|
+      - users[1].sort_by(&:name).each_with_index do |user, index|
+        %tr{id: "user_#{user.id}_points"}
+          %td
+            = index == 0 ? rank : "-"
+          %td= user.name
+          %td
+            %b= index == 0 ? users[0] : ""#points
+          - rank += 1

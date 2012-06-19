@@ -1,0 +1,174 @@
+body {
+  background-image: url("/images/grass-texture.jpg");
+  margin: 0px;
+  background-size: 107px 324px;
+  background-repeat: repeat;
+}
+
+.content {
+  margin-top: 30px;
+}
+
+.well {
+  background-color:rgba(0,25,0,0.5);
+  color: #fff;
+/*  margin: 0px;*/
+}
+
+
+.match {
+  height: 75px;
+}
+
+.match .team_name {
+  padding: 15px 0px;
+  font-family: 'Josefin Slab',serif;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.match .left {
+  text-align: right;
+}
+
+.match .right {
+  text-align: left;
+}
+
+.match .score {
+  padding: 15px 0px;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.match .flag {
+  width: 60px;
+  height: 75px;
+}
+
+.match .prediction {
+  padding: 15px 0px;
+  text-align: center;
+}
+
+form.prediction_form label{
+  color: #433;
+  font-size: 18px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+form.prediction_form .alert{
+  display: none;
+}
+
+.icon-hand-right {
+  float: right;
+}
+
+form.prediction_form input{
+/*  display: none;*/
+}
+
+.input-prepend, .input-append {
+  display: inline-block;
+}
+
+.add-on {
+  color: #555;
+}
+
+.alert-error {
+  background-color: rgba(215, 190, 185, 0.7);
+  color: #922;
+  padding-left: 30px;
+}
+
+h3 a{
+  float: right;
+}
+
+a.brand {
+  height: 35px;
+  vertical-align: top;
+}
+a.brand img {
+  margin-left: -160px;
+  margin-top: -20px;
+}
+
+.modal {
+  background-color: transparent;
+}
+
+#dummy_modal .modal {
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+#dummy_modal .modal .modal-body{
+  background-color: transparent;
+  padding: 200px;
+  overflow: hideen;
+}
+
+h2.well {
+  padding: 0px 50px;
+  margin: 0px;
+  text-align: center;
+}
+
+
+/*Loading Animation*/
+
+.circle {
+  background-color: rgba(0,0,0,0);
+  border:5px solid rgba(0,229,183,0.9);
+  opacity:.9;
+  border-right:5px solid rgba(0,0,0,0);
+  border-left:5px solid rgba(0,0,0,0);
+  border-radius:50px;
+  box-shadow: 0 0 35px #21e787;
+  width:50px;
+  height:50px;
+  margin:0 auto;
+  -moz-animation:spinPulse 1s infinite ease-in-out;
+  -webkit-animation:spinPulse 1s infinite linear;
+}
+.circle1 {
+  background-color: rgba(0,0,0,0);
+  border:5px solid rgba(0,229,183,0.9);
+  opacity:.9;
+  border-left:5px solid rgba(0,0,0,0);
+  border-right:5px solid rgba(0,0,0,0);
+  border-radius:50px;
+  box-shadow: 0 0 15px #21e787;
+  width:30px;
+  height:30px;
+  margin:0 auto;
+  position:relative;
+  top:-50px;
+  -moz-animation:spinoffPulse 1s infinite linear;
+  -webkit-animation:spinoffPulse 1s infinite linear;
+  margin-left: 60px;
+}
+@-moz-keyframes spinPulse {
+  0% { -moz-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7;}
+  50% { -moz-transform:rotate(145deg); opacity:1; }
+  100% { -moz-transform:rotate(-320deg); opacity:0; }
+}
+@-moz-keyframes spinoffPulse {
+  0% { -moz-transform:rotate(0deg); }
+  100% { -moz-transform:rotate(360deg);  }
+}
+@-webkit-keyframes spinPulse {
+  0% { -webkit-transform:rotate(160deg); opacity:0; box-shadow:0 0 1px #2187e7; }
+  50% { -webkit-transform:rotate(145deg); opacity:1;}
+  100% { -webkit-transform:rotate(-320deg); opacity:0; }
+}
+@-webkit-keyframes spinoffPulse {
+  0% { -webkit-transform:rotate(0deg); }
+  100% { -webkit-transform:rotate(360deg); }
+}

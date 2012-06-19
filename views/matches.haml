@@ -1,0 +1,53 @@
+- @matches_by_date.each do |match|
+  .row.well{ style: "min-height: 50px;display: block;padding: 5px 20px;"}
+    %h3{id: match.kick_off_date == Date.today ? "today" : ""}
+      = match.nepali_kick_off_time.strftime("%A, %b %d")
+      %span{style: "font-size: 75%;"}= " - #{match.group}"
+      - if logged_in? && match.prediction_deadline_passed?
+        %a{href: "/match/#{match.id}/predictions", "data-remote" => true}
+          %i.icon-eye-open.icon-white
+    - if admin? && match.completed?
+      %a{href: "/match/#{match.id}/result"} Result
+    .row.match
+      .span2.team_name.left{ team: match.team_a}= match.team_a
+      .span1.flag
+        %img{ src: country_flag_image(match.team_a) }
+      .span1.score= match.score || match.nepali_kick_off_time.strftime("%H:%M")
+      .span1.flag
+        %img{ src: country_flag_image(match.team_b) }
+      .span2.team_name.right= match.team_b
+      .span3.prediction
+        - if logged_in?
+          - @prediction_result = nil
+          %span.prediction_message
+            - if prediction = current_user.prediction_for(match)
+              - if match.score.nil?
+                = prediction.short_message
+              - else
+                = "<i class='icon-#{prediction.correct? ? "thumbs-up" : "thumbs-down"} icon-white'></i>"
+              - @prediction_result = prediction.result
+          - if match.open_for_prediction?
+            %a.prediction_link{ 'data-toggle'=>"modal", 'href'=>"#prediction_form_for_#{ match.id}"}
+              - if @prediction_result.nil?
+                Predict
+              - else
+                %i.icon-edit.icon-white
+            .modal.hide{ id: "prediction_form_for_#{ match.id}" }
+              .modal-header
+                %h3 What do you think will be the outcome for this match
+              %form.prediction_form{action: "/match/#{match.id}/predict", method: :post}
+                .modal-body
+                  .alert.alert-error
+                  %label.radio
+                    %input{type: "radio", name: "prediction", value: match.team_a, required: 'required', checked: @prediction_result == match.team_a }
+                    = "#{match.team_a.upcase} are surely going to Win"
+                  %label.radio
+                    %input{type: "radio", name: "prediction", value: "Draw", required: 'required', checked: @prediction_result == "Draw" }
+                    = "I'm going to sit on the fence here, it's going to be a DRAW"
+                  %label.radio
+                    %input{type: "radio", name: "prediction", value: match.team_b, required: 'required', checked: @prediction_result == match.team_b }
+                    = "#{match.team_b.upcase} will Win it in my opinion"
+                .modal-footer
+                  %a.btn{ href:"#", 'data-dismiss' => "modal" } I'm not Sure Yet
+                  %button.btn.btn-primary.submit_prediction I'm Confident, Submit
+
