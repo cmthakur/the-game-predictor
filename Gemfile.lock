@@ -68,7 +68,7 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
-    rack (1.4.1)
+    rack (1.6.13)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-protection (1.2.0)
