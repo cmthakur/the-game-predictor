@@ -4,7 +4,7 @@ GEM
     addressable (2.2.8)
     bcrypt-ruby (3.0.1)
     coderay (1.0.6)
-    dalli (1.1.4)
+    dalli (3.2.3)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
